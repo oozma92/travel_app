@@ -8,3 +8,8 @@
 <% else %>
 	<p>My shoe size is <%= @size %></p>
 <% end %>
+
+
+
+<%= link_to "Blue", about_path(color: "blue"), class: "btn btn-primary" %>
+<%= link_to "Red", about_path(color: "red"), class: "btn btn-danger" %>
