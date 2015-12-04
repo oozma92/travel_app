@@ -1,0 +1,50 @@
+<ul class="nav nav-pills" role="tablist">
+  <li><%= link_to "All", destinations_path %></li>
+  <% @my_countries.each do |c| %>
+    <li><%= link_to "#{c.country}", controller: "destinations", country: "#{c.country}" %></li>
+  <% end %>
+</ul>
+
+
+<% if notice != nil %>
+  <p id="notice" class="alert alert-success" role="alert">
+    <%= notice %>
+  </p>
+<% end %>
+
+<h1>Listing Destinations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>City</th>
+      <th>Country</th>
+      <th>Population</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @destinations.each do |destination| %>
+      <tr>
+        <td><%= destination.city %></td>
+        <td><%= destination.country %></td>
+        <td><%= destination.population %></td>
+        <td><%= destination.description %></td>
+        
+        <% if destination.avatar_file_name !=nil %>
+          <%= image_tag destination.avatar.url(:medium), class: "img-responsive" %>
+        <% end %>
+
+        <td><%= link_to 'Show', destination %></td>
+        <td><%= link_to 'Edit', edit_destination_path(destination) %></td>
+        <td><%= link_to 'Destroy', destination, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Destination', new_destination_path %>

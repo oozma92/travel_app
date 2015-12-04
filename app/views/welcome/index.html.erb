@@ -1,33 +1,25 @@
-<h1>Welcome to my Travel Site</h1>
-<p>This is my very awesome travel site.</p>
 
 
-<%= @homeland %>
-<ul>
-	<% @countries.each do |country| %>
-		<li><%= country %></li>
-	<% end %>
-</ul>
+<h1>My Destination Wish List</h1>
 
+  <div class="row">
+    <% @destinations.each do |destination| %>
+      <div class="col-md-4">
+       <div class="panel panel-default">
+        <div class="panel-body">
+         <h2><%= destination.city %></h2>
+         <h3><%= destination.country %></h3>
+         <p><%= destination.description %></p>
+       
+         <div class="btn-group">
+          <%= link_to 'Show', destination, class: "btn btn-default" %>
+          <%= link_to 'Edit', edit_destination_path(destination), class: "btn btn-default" %>
+          <%= link_to 'Destroy', destination, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-default" %>
+         </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
-	<% @images.each do |image| %>
-		<%= image_tag image, class: "img-responsive" %>
-	<% end %>
-
-<table class="table">
-	<tr>
-		<% @united_states.each do |key,value| %>
-			<th><%= key.titleize %></th>
-		<% end %>
-	</tr>
-
-	<tr>
-		<% @united_states.each do |key,value| %>
-			<% if value.kind_of?(Array) %>
-				<td><%= value.join(", ") %></td>
-			<% else %>
-				<td><%= value %></td>
-			<% end %>
-		<% end %>
-	</tr>
-</table>
+<%= link_to 'New Destination', new_destination_path, class: "btn btn-primary" %>

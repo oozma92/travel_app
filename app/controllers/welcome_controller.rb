@@ -9,6 +9,8 @@ class WelcomeController < ApplicationController
   					  "favorite city" => "Asheville, NC",
   					  "favorite state" => "Oregon",
   					  "flag colors" => ["red", "white", "blue"]}
+
+    @destinations = Destination.all
   					  
   end
 
